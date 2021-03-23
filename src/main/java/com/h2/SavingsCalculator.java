@@ -8,9 +8,30 @@ public class SavingsCalculator {
 	private float[] credits;
 	
 	public SavingsCalculator(float[] debits, float[] credits) {
-		super();
 		this.debits = debits;
 		this.credits = credits;
+	}
+	
+	public static void main(String[] args) {
+		String[] creditsAsString = args[0].split(",");
+		String[] debitsAsStrings = args[1].split(",");
+		
+		float[] credits = new float[creditsAsString.length];
+		float[] debits = new float[debitsAsStrings.length];
+		
+		for (int i = 0; i < creditsAsString.length; i++) {
+			credits[i]=Float.parseFloat(creditsAsString[i]);
+		}
+		
+		for (int i = 0; i < debitsAsStrings.length; i++) {
+			debits[i]=Float.parseFloat(debitsAsStrings[i]);
+		}
+		
+		SavingsCalculator calculator = new SavingsCalculator(debits, credits);
+		float netSavings = calculator.calculate();
+		
+		System.out.print("Net Savings = "+netSavings+", remaining days in month = "+remainingDaysInMonth(LocalDate.now()));
+		
 	}
 	
 	private static int remainingDaysInMonth(LocalDate date) {
@@ -21,7 +42,7 @@ public class SavingsCalculator {
 	}
 	
 	public float calculate() {
-		return 0;
+		return sumOfCredits()-sumOfDebits();
 	}
 	
 	private float sumOfCredits() {
