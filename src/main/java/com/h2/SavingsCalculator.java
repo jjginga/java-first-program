@@ -7,7 +7,7 @@ public class SavingsCalculator {
 	private float[] debits;
 	private float[] credits;
 	
-	public SavingsCalculator(float[] debits, float[] credits) {
+	public SavingsCalculator(float[] credits, float[] debits) {
 		this.debits = debits;
 		this.credits = credits;
 	}
@@ -27,7 +27,7 @@ public class SavingsCalculator {
 			debits[i]=Float.parseFloat(debitsAsStrings[i]);
 		}
 		
-		SavingsCalculator calculator = new SavingsCalculator(debits, credits);
+		SavingsCalculator calculator = new SavingsCalculator(credits, debits);
 		float netSavings = calculator.calculate();
 		
 		System.out.println("Net Savings = " + netSavings + ", remaining days in month = " + remainingDaysInMonth(LocalDate.now()));
